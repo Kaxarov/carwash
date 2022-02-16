@@ -10,9 +10,18 @@ class BaseModel(models.Model):
         abstract = True
 
 
-class CarModel(BaseModel):
+class CarOptions(models.TextChoices):
+    model = "model", _("Model")
+    brand = "brand", _("Brand")
+    color = "color", _("Color")
+
+
+class CarOption(BaseModel):
     title = models.CharField(_("Nomi"), max_length=128)
+    type = models.CharField(_("Turi"), choices=CarOptions.choices, max_length=128)
 
     class Meta:
-        verbose_name = _("Mashina modeli")
-        verbose_name_plural = _("Mashina modellari")
+        verbose_name = _("Mashina funksiyasi")
+        verbose_name_plural = _("Mashina funksiyalari")
+
+
